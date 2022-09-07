@@ -14,13 +14,10 @@ use App\Http\Controllers\UserRegistrationController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/',function(){
     return view('users.login_form');
-});
-
-Route::get('/dashboard', function () {
-    return view('admin.home.home');
-})->middleware(['auth'])->name('dashboard');
+})->middleware('auth');
+Route::get('/dashboard',[UserRegistrationController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 require __DIR__.'/auth.php';
 

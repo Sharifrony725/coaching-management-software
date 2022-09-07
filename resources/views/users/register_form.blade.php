@@ -18,7 +18,7 @@
         <div class="col-12 pl-0 pr-0">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <h4 class="text-center font-weight-bold font-italic mt-3">Admin Login Form</h4>
+                    <h4 class="text-center font-weight-bold font-italic mt-3">Registation Form</h4>
                 </div>
             </div>
             <div class="form-group">
@@ -62,6 +62,10 @@
                 <div class="form-group col-12 mb-3">
                     <label for="password-confirm" class="col-sm-3 col-form-label ">Confirm Password</label>
                     <input id="password-confirm" type="password" class="col-sm-9 form-control" name="password_confirmation" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label for="password-confirm" class="col-sm-3 col-form-label ">Image</label>
+                    <input id="password-confirm" type="file" class="col-sm-9 form-control" name="avatar">
                 </div>
 
                 <div class="form-group col-12 mb-3">

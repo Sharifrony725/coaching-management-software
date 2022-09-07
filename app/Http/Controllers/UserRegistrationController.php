@@ -5,14 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 class UserRegistrationController extends Controller
 {
+    // public function index(){
+    //     return view('users.login_form');
+    // }
+    public function dashboard(){
+        return view('admin.home.home');
+    }
     public function UserRegistration(){
         //create method
-        return view('users.register_form');
+        if(Auth::user()->role == 'Admin'){
+           return view('users.register_form');
+        }else{
+            return redirect()->back();
+        }
     }
 
     public function UserSave(Request $request){
@@ -30,7 +41,7 @@ class UserRegistrationController extends Controller
             'email' => $request->email,
             'mobile' => $request->mobile,
             'role' => $request->role,
-            // 'avatar' =>$request->avatar,
+            'avatar' =>$request->avatar,
             'password' => Hash::make($request->password),
         ]);
         $users = User::all();
@@ -39,7 +50,12 @@ class UserRegistrationController extends Controller
     public function userList()
     {
         //show method
-        $users = User::all();
-        return view('users.user_list', compact('users'));
+        if(Auth::user()->role == 'Admin'){
+            $users = User::all();
+            return view('users.user_list', compact('users'));
+        }else{
+            return redirect()->back();
+        }
+
     }
 }

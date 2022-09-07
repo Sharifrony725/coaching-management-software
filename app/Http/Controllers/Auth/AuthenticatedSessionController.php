@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -17,8 +19,20 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        //return view('auth.login');
-        return view('users.login_form');
+        $users = User::all();
+        if (count($users) > 0) {
+            //return view('auth.login');
+            return view('users.login_form');
+        } else {
+            $user = new User();
+            $user->role = 'Admin';
+            $user->name = 'AdminName';
+            $user->email = 'admin@admin';
+            $user->password = Hash::make('123456789');
+            $user->mobile = '012365478962';
+            $user->save();
+            return view('users.login_form');
+        }
     }
 
     /**
@@ -50,6 +64,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

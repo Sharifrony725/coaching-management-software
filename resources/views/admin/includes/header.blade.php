@@ -52,21 +52,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><span class="fa fa-home"></span> Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('dashboard') }}"><span class="fa fa-home"></span> Home <span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Student
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li class=""><a class="dropdown-item" href="{{ route('user_registration_form') }}">Registration</a></li>
-                    <li class=""><a class="dropdown-item" href="table.html">Batch Wise List</a></li>
+                    <li class=""><a class="dropdown-item" href="#">Registration</a></li>
+                    <li class=""><a class="dropdown-item" href="#">Batch Wise List</a></li>
                     <li class=""><a class="dropdown-item" href="#">Class Wise List</a></li>
                 </ul>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="gallery.html">Gallery</a>
+                <a class="nav-link" href="#">Gallery</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -74,6 +75,16 @@
                     Setting
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                @if(Auth::user()->role == 'Admin')
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">User</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('user_registration_form') }}" class="dropdown-item">Add User</a></li>
+                            <li><a href="{{ route('user.list') }}" class="dropdown-item">User List</a></li>
+                        </ul>
+                    </li>
+                  @endif
+
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">School</a>
                         <ul class="dropdown-menu">
