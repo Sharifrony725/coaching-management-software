@@ -24,4 +24,7 @@ require __DIR__.'/auth.php';
 Route::get('user-registration', [UserRegistrationController::class, 'UserRegistration'])->middleware('auth')->name('user_registration_form');
 
 Route::post('user-registration', [UserRegistrationController::class, 'UserSave'])->middleware('auth')->name('user.save');
-Route::get('user-list', [UserRegistrationController::class , 'userList'])->middleware('auth')->name('user.list');
+Route::get('user-list', [UserRegistrationController::class , 'userList'])->name('user.list');
+Route::get('user-profile/{UserId}', [UserRegistrationController::class , 'userProfile'])->name('user.profile');
+Route::get('change/user/info/{id}', [UserRegistrationController::class , 'changeUserInfo'])->name('change.user.info');
+Route::post('update/user/infos', [UserRegistrationController::class , 'UpdateUserInfo'])->name('update.user.info');

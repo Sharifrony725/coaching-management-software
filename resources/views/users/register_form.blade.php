@@ -1,18 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Coaching | Registration Form</title>
-    <!--    Bootstrap-4.3 Stylesheet-->
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
-    <!--    Theme Stylesheet-->
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
-    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png" type="image/x-icon') }}">
-</head>
-<body>
+@extends('admin.master')
+@section('main_content')
 <section class="container-fluid">
     <div class="row content login-form">
         <div class="col-12 pl-0 pr-0">
@@ -50,21 +37,21 @@
                 </div>
 
                 <div class="form-group col-12 mb-3">
-                    <label for="email" class="col-sm-3 col-form-label">E-Mail Address</label>
+                    <label for="email" class="col-sm-3 col-form-label text-right">E-Mail Address</label>
                     <input id="email" type="email" class="col-sm-9 form-control" name="email" value="{{ old('email') }}" placeholder="Email Address" required>
                 </div>
 
                 <div class="form-group col-12 mb-3">
-                    <label for="password" class="col-sm-3 col-form-label ">Password</label>
+                    <label for="password" class="col-sm-3 col-form-label text-right">Password</label>
                     <input id="password" type="password" class="col-sm-9 form-control" name="password" placeholder="Password" required>
                 </div>
 
                 <div class="form-group col-12 mb-3">
-                    <label for="password-confirm" class="col-sm-3 col-form-label ">Confirm Password</label>
+                    <label for="password-confirm" class="col-sm-3 col-form-label text-center">Confirm Password</label>
                     <input id="password-confirm" type="password" class="col-sm-9 form-control" name="password_confirmation" placeholder="Confirm Password" required>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label for="password-confirm" class="col-sm-3 col-form-label ">Image</label>
+                    <label for="password-confirm" class="col-sm-3 col-form-label text-right">Image</label>
                     <input id="password-confirm" type="file" class="col-sm-9 form-control" name="avatar">
                 </div>
 
@@ -76,6 +63,5 @@
         </div>
     </div>
 </section>
-<!--Content End-->
-</body>
-</html>
+@endsection
+

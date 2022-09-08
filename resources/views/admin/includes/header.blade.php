@@ -75,15 +75,18 @@
                     Setting
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                @if(Auth::user()->role == 'Admin')
+
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">User</a>
                         <ul class="dropdown-menu">
+                             @if(Auth::user()->role == 'Admin')
                             <li><a href="{{ route('user_registration_form') }}" class="dropdown-item">Add User</a></li>
                             <li><a href="{{ route('user.list') }}" class="dropdown-item">User List</a></li>
+                             @endif
+                            <li><a href="{{ route('user.profile',['UserId' => Auth::user()->id]) }}" class="dropdown-item">User Profile</a></li>
                         </ul>
                     </li>
-                  @endif
+
 
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">School</a>
