@@ -22,7 +22,10 @@
                     <table id="" class="table table-striped table-bordered dt-responsive nowrap text-center"
                         style="width: 100%;">
                         <tr>
-                            <td colspan="2"><img src="{{ asset('admin/assets/images/avatar.png') }}" alt="" srcset=""></td>
+                            <td colspan="2">
+                                <img src="@if (isset($user->avatar)){{ asset('/').$user->avatar}}
+                                @else{{ asset('admin/assets/images/avatar.png') }} @endif "width="300px" height="300px">
+                            </td>
                         </tr>
                         <tr>
                             <th>Name</th>
@@ -45,7 +48,7 @@
                             <th>Action</th>
                             <td>
                                 <a href="{{ route('change.user.info',['id'=>$user->id]) }}" class="btn btn-sm btn-dark">Change Info</a>
-                                <a href="#" class="btn btn-sm btn-info">Chnage Photo</span></a>
+                                <a href="{{ route('change.user.avatar',['id'=>$user->id]) }}" class="btn btn-sm btn-info">Chnage Photo</span></a>
                                 <a href="#" class="btn btn-sm btn-danger">Change Password</a>
                             </td>
                         </tr>

@@ -82,5 +82,20 @@ class UserRegistrationController extends Controller
         $user->save();
         return redirect()->route('user.profile',['UserId'=> $request->user_id])->with('message', 'user info updated successfully.');
     }
+    public function UpdateUserAvatar($id){
+        $user = User::find($id);
+        return view('users.change_user_avatar', compact('user'));
+    }
+    public function SaveUpdatedUserAvatar(Request $request){
+        $user = User::find($request->user_id);
+        $file = $request->file('avatar');
+        $imageName = $file->getClientOriginalName();
+        $directory = 'admin/assets/avatar/';
+        $imageUrl = $directory.$imageName;
+        $file->move($directory,$imageUrl);
+        $user->avatar = $imageUrl;
+        $user->save();
+        return redirect()->route('user.profile', ['UserId' => $request->user_id])->with('message', 'user profile updated successfully.');
+    }
     //last bracket
 }

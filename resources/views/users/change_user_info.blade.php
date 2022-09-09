@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('main_content')
 <section class="container-fluid">
-    <div class="row content login-form">
+    <div class="row content registration-form">
         <div class="col-12 pl-0 pr-0">
             <div class="form-group">
                 <div class="col-sm-12">
