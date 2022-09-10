@@ -30,3 +30,5 @@ Route::get('change/user/info/{id}', [UserRegistrationController::class , 'change
 Route::post('update/user/infos', [UserRegistrationController::class , 'UpdateUserInfo'])->name('update.user.info');
 Route::get('change/user/avatar/{id}', [UserRegistrationController::class , 'UpdateUserAvatar'])->name('change.user.avatar');
 Route::post('update/user/avatar', [UserRegistrationController::class , 'SaveUpdatedUserAvatar'])->name('update.user.avatar');
+Route::get('change/user/password/{id}', [UserRegistrationController::class , 'changeUserPassword'])->name('change.user.password');
+Route::post('change/user/password', [UserRegistrationController::class , 'updateUserPassword'])->name('update.user.password');

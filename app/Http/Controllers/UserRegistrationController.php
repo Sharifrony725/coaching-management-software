@@ -97,5 +97,25 @@ class UserRegistrationController extends Controller
         $user->save();
         return redirect()->route('user.profile', ['UserId' => $request->user_id])->with('message', 'user profile updated successfully.');
     }
-    //last bracket
+
+    public function changeUserPassword($id){
+        $user = User::find($id);
+        return view('users.change_user_password',compact('user'));
+    }
+    public function updateUserPassword(Request $request){
+        $request->validate([
+            'password' => ['required', 'string', 'min:6'],
+        ]);
+        $old_password = $request->password;
+        $user = User::find($request->user_id);
+        if(Hash::check($old_password, $user->password)){
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            return redirect()->route('user.profile', ['UserId' => $request->user_id])->with('message', 'user password updated successfully.');
+        }else{
+            return back()->with('error_message' ,'old password does not match,please try again.');
+        }
+    }
+
+//last bracket
 }
