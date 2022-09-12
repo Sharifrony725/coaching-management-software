@@ -29,12 +29,22 @@
 <body>
 <!--Header Start-->
 <section>
-    <div class="col-sm-12 text-center header pb-1">
-        <h2 class="font-weight-bold p-1 m-0">Student's Care Unit</h2>
-        <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">Students Care</h5>
-        <p class="font-weight-bold mb-0">215/4/A/3, Dhanmondhi, Dhaka-1209</p>
-        <p class="font-weight-bold mb-0">Mobile: +880-1581085164</p>
-    </div>
+    @if (isset($header_info))
+        <div class="col-sm-12 text-center header pb-1">
+            <h2 class="font-weight-bold p-1 m-0">{{ $header_info->title }}</h2>
+            <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">{{ $header_info->sub_title }}</h5>
+            <p class="font-weight-bold mb-0">{{ $header_info->address }}</p>
+            <p class="font-weight-bold mb-0">Mobile: {{ $header_info->mobile }}</p>
+        </div>
+    @else
+        <div class="col-sm-12 text-center header pb-1">
+            <h2 class="font-weight-bold p-1 m-0">Student's Care Unit</h2>
+            <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">Students Care</h5>
+            <p class="font-weight-bold mb-0">215/4/A/3, Dhanmondhi, Dhaka-1209</p>
+            <p class="font-weight-bold mb-0">Mobile: +880-1581085164</p>
+        </div>
+    @endif
+
 </section>
 <!--Header End-->
 
@@ -110,6 +120,13 @@
                         <a class="dropdown-item dropdown-toggle" href="#">Batch</a>
                         <ul class="dropdown-menu">
                             <li><a href="#" class="dropdown-item">Add Batch</a></li>
+                            <li><a href="#" class="dropdown-item">Batch List</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">General</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('add.header.footer') }}" class="dropdown-item">Add Header & Footer</a></li>
                             <li><a href="#" class="dropdown-item">Batch List</a></li>
                         </ul>
                     </li>
