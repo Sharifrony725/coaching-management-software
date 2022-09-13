@@ -3,18 +3,6 @@
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserRegistrationController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/',function(){
     return view('users.login_form');
 })->middleware('auth');
@@ -32,6 +20,11 @@ Route::get('change/user/avatar/{id}', [UserRegistrationController::class , 'Upda
 Route::post('update/user/avatar', [UserRegistrationController::class , 'SaveUpdatedUserAvatar'])->name('update.user.avatar');
 Route::get('change/user/password/{id}', [UserRegistrationController::class , 'changeUserPassword'])->name('change.user.password');
 Route::post('change/user/password', [UserRegistrationController::class , 'updateUserPassword'])->name('update.user.password');
-//end user routes
+//Header Footer routes
 Route::get('add/header/footer', [HomePageController::class, 'create'])->name('add.header.footer');
 Route::post('save/header/footer', [HomePageController::class, 'store'])->name('save.header.footer');
+Route::get('manage/header/footer', [HomePageController::class, 'index'])->name('manage.header.footer');
+Route::get('edit/header/footer/{id}', [HomePageController::class, 'edit'])->name('edit.header.footer');
+Route::post('update/header/footer', [HomePageController::class, 'update'])->name('update.header.footer');
+Route::delete('delete/header/footer/{id}', [HomePageController::class, 'destroy'])->name('delete.header.footer');
+//Header Footer routes end

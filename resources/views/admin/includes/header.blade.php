@@ -29,12 +29,12 @@
 <body>
 <!--Header Start-->
 <section>
-    @if (isset($header_info))
+    @if (isset($header_footer_info))
         <div class="col-sm-12 text-center header pb-1">
-            <h2 class="font-weight-bold p-1 m-0">{{ $header_info->title }}</h2>
-            <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">{{ $header_info->sub_title }}</h5>
-            <p class="font-weight-bold mb-0">{{ $header_info->address }}</p>
-            <p class="font-weight-bold mb-0">Mobile: {{ $header_info->mobile }}</p>
+            <h2 class="font-weight-bold p-1 m-0">{{ $header_footer_info->title }}</h2>
+            <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">{{ $header_footer_info->sub_title }}</h5>
+            <p class="font-weight-bold mb-0">{{ $header_footer_info->address }}</p>
+            <p class="font-weight-bold mb-0">Mobile: {{ $header_footer_info->mobile }}</p>
         </div>
     @else
         <div class="col-sm-12 text-center header pb-1">
@@ -49,7 +49,7 @@
 <!--Header End-->
 
 <!--User Avatar Start-->
-<img class="avatar" src="@if (Auth::user()->avatar){{ asset('/').Auth::user()->avatar}} @else
+<img class="avatar" src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar}} @else
 {{ asset('admin/assets/images/avatar.png') }}
 @endif" alt="Avatar">
 <!--User Avatar Start-->
@@ -126,8 +126,12 @@
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">General</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('add.header.footer') }}" class="dropdown-item">Add Header & Footer</a></li>
-                            <li><a href="#" class="dropdown-item">Batch List</a></li>
+                            @if(!isset($header_footer_info))
+                                <li><a href="{{ route('add.header.footer') }}" class="dropdown-item">Add Header & Footer</a></li>
+                            @endif
+                            @if(isset($header_footer_info))
+                                <li><a href="{{ route('manage.header.footer') }}" class="dropdown-item">Manage Header & Footer</a></li>
+                            @endif
                         </ul>
                     </li>
 

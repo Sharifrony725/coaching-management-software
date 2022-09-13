@@ -14,7 +14,8 @@ class HomePageController extends Controller
      */
     public function index()
     {
-
+        $header_footer_info = HeaderFooterModel::first();
+        return view('homepage.manage_header_footer',compact('header_footer_info'));
     }
 
     /**
@@ -24,7 +25,12 @@ class HomePageController extends Controller
      */
     public function create()
     {
-        return view('homepage.add_header_footer');
+        $header_footer_info = HeaderFooterModel::first();
+        if(isset($header_footer_info)){
+            return view('homepage.manage_header_footer', compact('header_footer_info'));
+        }else{
+            return view('homepage.add_header_footer');
+        }
     }
 
     /**
@@ -36,11 +42,11 @@ class HomePageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:45',
+            'title' => 'required|string|max:100',
             'sub_title' => 'required|string',
             'address' => 'required|string|max:255',
-            'mobile' => ['required', 'string', 'min:11', 'max:13'],
-            'copy_right' => 'required|string|max:15',
+            'mobile' => ['required', 'string', 'min:11', 'max:15'],
+            'copy_right' => 'required|string|max:50',
             'status' => 'required'
         ]);
         $header_footer = new HeaderFooterModel();
@@ -73,7 +79,8 @@ class HomePageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $header_footer = HeaderFooterModel::find($id);
+        return view('homepage.edit_header_footer',compact('header_footer'));
     }
 
     /**
@@ -83,9 +90,25 @@ class HomePageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'sub_title' => 'required|string',
+            'address' => 'required|string|max:255',
+            'mobile' => ['required', 'string', 'min:11', 'max:15'],
+            'copy_right' => 'required|string|max:50',
+            'status' => 'required'
+        ]);
+        $header_footer = HeaderFooterModel::find($request->id);
+        $header_footer->title = $request->title;
+        $header_footer->sub_title = $request->sub_title;
+        $header_footer->address = $request->address;
+        $header_footer->mobile = $request->mobile;
+        $header_footer->copy_right = $request->copy_right;
+        $header_footer->status = $request->status;
+        $header_footer->save();
+        return redirect()->route('manage.header.footer')->with('message', 'Header & Footer info updated successfully.');
     }
 
     /**
@@ -96,6 +119,8 @@ class HomePageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $header_footer = HeaderFooterModel::find($id);
+        $header_footer->delete();
+        return redirect()->route('add.header.footer')->with('message', 'Header & Footer info delete successfully.');
     }
 }

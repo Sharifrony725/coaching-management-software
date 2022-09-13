@@ -2,9 +2,9 @@
 <footer class="container-fluid">
     <div class="row footer">
         <div class="col-12">
-            @if (isset($footer_info))
+            @if (isset($header_footer_info))
                 <p class="pt-2 mb-2 text-center">Copyright &copy;
-                    <a class="footer-link" href="">{{ $footer_info->copy_right  }}</a> || Developed by:
+                    <a class="footer-link" href="">{{ $header_footer_info->copy_right }}</a> || Developed by:
                     <a class="footer-link" href="#">SharifTech</a>
                 </p>
             @else
