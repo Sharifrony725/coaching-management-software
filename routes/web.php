@@ -42,3 +42,5 @@ Route::delete('delete/slider/{id}', [SliderController::class, 'destroy'])->name(
 Route::get('image/gallery', [SliderController::class, 'imageGallery'])->name('image.gallery');
 //School Routes
 Route::resource('schools', SchoolController::class);
+Route::get('school/unpublished/{id}', [SchoolController::class , 'schoolUnpublished'])->name('school.unpublished');
+Route::get('school/published/{id}', [SchoolController::class , 'schoolPublished'])->name('school.published');

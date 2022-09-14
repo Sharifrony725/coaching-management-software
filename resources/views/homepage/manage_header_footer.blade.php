@@ -49,7 +49,7 @@
                             <form action="{{ route('delete.header.footer',$header_footer_info->id) }}" method="post">
                                 @csrf
                                 @method('delete')
-                            <button  class="btn btn-sm btn-danger mr-5"><span class="fa fa-trash"></span></button>
+                            <button  class="btn btn-sm btn-danger mr-5" onclick="return confirm('If you want to delete this item,Press OK')"><span class="fa fa-trash"></span></button>
                             </form>
                         </td>
                     </tr>

@@ -37,10 +37,12 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
        $request->validate([
-        'school_name' => 'required|string|max:255'
+        'school_name' => 'required|string|max:255',
+        'status' => 'required'
        ]);
        $school = new School();
        $school->school_name = $request->school_name;
+       $school->status = $request->status;
        $school->save();
        return redirect()->route('schools.index')->with('message', 'School Added successfully.');
     }
@@ -98,5 +100,17 @@ class SchoolController extends Controller
         $school = School::find($id);
         $school->delete();
         return redirect()->route('schools.index')->with('message', 'School delete successfully.');
+    }
+    public function schoolUnpublished($id){
+        $schoolUnpublished = School::find($id);
+        $schoolUnpublished->status = 2;
+        $schoolUnpublished->save();
+        return redirect()->route('schools.index')->with('message', 'School Unpublished successfully.');
+    }
+    public function schoolPublished($id){
+        $schoolPublished = School::find($id);
+        $schoolPublished->status = 1;
+        $schoolPublished->save();
+        return redirect()->route('schools.index')->with('message', 'School Published successfully.');
     }
 }

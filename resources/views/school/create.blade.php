@@ -41,6 +41,27 @@
                                 </td>
                             </tr>
                              <tr>
+                                <td>
+                                    <div class="form-group row mb-0">
+                                        <label for="description" class="col-form-label col-sm-3 text-right"
+                                            for="title">Publication Status</label>
+                                        <div class="col-sm-9 text-left">
+                                            <div class="form-check col-form-label">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    value="1">
+                                                <label class="form-check-label">Published</label>
+                                            </div>
+                                            <div class="form-check col-form-label">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    value="2">
+                                                <label class="form-check-label">Unpublished</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                             <tr>
                                 <td><button type="submit" class="btn btn-block my-btn-submit">Save</button></td>
                             </tr>
                         </table>

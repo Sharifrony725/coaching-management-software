@@ -36,7 +36,7 @@
                         <td>
                             <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
                             <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                            <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+                            <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('If you want to delete this item,Press OK')"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
                         @endforeach

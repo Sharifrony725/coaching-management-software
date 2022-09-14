@@ -56,7 +56,7 @@
                             <form action="{{ route('delete.slider',$slider->id) }}" method="post">
                            @csrf
                                 @method('delete')
-                            <button  class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>
+                            <button  class="btn btn-sm btn-danger" onclick="return confirm('If you want to delete this item,Press OK')"><span class="fa fa-trash"></span></button>
                             </form>
                         </td>
                     </tr>
