@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserRegistrationController;
 Route::get('/',function(){
     return view('users.login_form');
@@ -37,5 +38,7 @@ Route::post('update/slider', [SliderController::class, 'update'])->name('update.
 Route::get('slider/published/{id}', [SliderController::class, 'sliderPublished'])->name('slider.published');
 Route::get('slider/unpublished/{id}', [SliderController::class, 'sliderUnpublished'])->name('slider.unpublished');
 Route::delete('delete/slider/{id}', [SliderController::class, 'destroy'])->name('delete.slider');
+//gallery image
 Route::get('image/gallery', [SliderController::class, 'imageGallery'])->name('image.gallery');
-
+//School Routes
+Route::resource('schools', SchoolController::class);
