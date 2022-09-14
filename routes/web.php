@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\HomePageController;
@@ -44,3 +45,8 @@ Route::get('image/gallery', [SliderController::class, 'imageGallery'])->name('im
 Route::resource('schools', SchoolController::class);
 Route::get('school/unpublished/{id}', [SchoolController::class , 'schoolUnpublished'])->name('school.unpublished');
 Route::get('school/published/{id}', [SchoolController::class , 'schoolPublished'])->name('school.published');
+//Class Routes
+Route::resource('classes', ClassController::class);
+Route::get('class/unpublished/{id}', [ClassController::class, 'classUnpublished'])->name('class.unpublished');
+Route::get('class/published/{id}', [ClassController::class, 'classPublished'])->name('class.published');
+
