@@ -147,4 +147,8 @@ class SliderController extends Controller
         $sliderPublished->save();
         return redirect()->route('slider.list')->with('message', 'Slider Unpublished successfully.');
     }
+    public function imageGallery(){
+        $sliders = Slider::all('slide_image');
+        return view('slider.image_gallery' ,compact('sliders'));
+    }
 }

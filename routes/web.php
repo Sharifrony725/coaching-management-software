@@ -37,5 +37,5 @@ Route::post('update/slider', [SliderController::class, 'update'])->name('update.
 Route::get('slider/published/{id}', [SliderController::class, 'sliderPublished'])->name('slider.published');
 Route::get('slider/unpublished/{id}', [SliderController::class, 'sliderUnpublished'])->name('slider.unpublished');
 Route::delete('delete/slider/{id}', [SliderController::class, 'destroy'])->name('delete.slider');
-
+Route::get('image/gallery', [SliderController::class, 'imageGallery'])->name('image.gallery');
 
