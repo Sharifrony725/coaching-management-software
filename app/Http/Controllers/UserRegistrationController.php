@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,8 @@ class UserRegistrationController extends Controller
     // }
     public function dashboard()
     {
-        return view('admin.home.home');
+        $sliders = Slider::where('status', '1')->get();
+        return view('admin.home.home',compact('sliders'));
     }
     public function UserRegistration()
     {

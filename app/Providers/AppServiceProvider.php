@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Slider;
 use App\Models\HeaderFooterModel;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,5 @@ class AppServiceProvider extends ServiceProvider
             $header_footer_info = HeaderFooterModel::where('status', 'Active')->first();
             $view->with('header_footer_info', $header_footer_info);
         });
-
     }
 }

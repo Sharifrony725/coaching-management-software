@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserRegistrationController;
 Route::get('/',function(){
@@ -27,4 +28,14 @@ Route::get('manage/header/footer', [HomePageController::class, 'index'])->name('
 Route::get('edit/header/footer/{id}', [HomePageController::class, 'edit'])->name('edit.header.footer');
 Route::post('update/header/footer', [HomePageController::class, 'update'])->name('update.header.footer');
 Route::delete('delete/header/footer/{id}', [HomePageController::class, 'destroy'])->name('delete.header.footer');
-//Header Footer routes end
+//sliders
+Route::get('add/slider', [SliderController::class, 'create'])->name('add.slider');
+Route::post('save/slider', [SliderController::class, 'store'])->name('save.slide');
+Route::get('all/slider/list', [SliderController::class, 'index'])->name('slider.list');
+Route::get('edit/slider/{id}', [SliderController::class, 'edit'])->name('edit.slider');
+Route::post('update/slider', [SliderController::class, 'update'])->name('update.slide');
+Route::get('slider/published/{id}', [SliderController::class, 'sliderPublished'])->name('slider.published');
+Route::get('slider/unpublished/{id}', [SliderController::class, 'sliderUnpublished'])->name('slider.unpublished');
+Route::delete('delete/slider/{id}', [SliderController::class, 'destroy'])->name('delete.slider');
+
+

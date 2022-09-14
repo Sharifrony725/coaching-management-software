@@ -134,6 +134,17 @@
                             @endif
                         </ul>
                     </li>
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Slider</a>
+                        <ul class="dropdown-menu">
+                            {{-- @if(!isset($header_footer_info)) --}}
+                                <li><a href="{{ route('add.slider') }}" class="dropdown-item">Add Slider</a></li>
+                            {{-- @endif
+                            @if(isset($header_footer_info)) --}}
+                                <li><a href="{{ route('slider.list') }}" class="dropdown-item">Slider List</a></li>
+                            {{-- @endif --}}
+                        </ul>
+                    </li>
 
                 </ul>
             </li>
