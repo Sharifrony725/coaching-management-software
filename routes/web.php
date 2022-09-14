@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SliderController;
@@ -49,4 +50,8 @@ Route::get('school/published/{id}', [SchoolController::class , 'schoolPublished'
 Route::resource('classes', ClassController::class);
 Route::get('class/unpublished/{id}', [ClassController::class, 'classUnpublished'])->name('class.unpublished');
 Route::get('class/published/{id}', [ClassController::class, 'classPublished'])->name('class.published');
-
+//Batch Routes
+Route::resource('batches', BatchController::class);
+Route::get('batch/unpublished/{id}', [BatchController::class, 'batchUnpublished'])->name('batches.unpublished');
+Route::get('batch/published/{id}', [BatchController::class, 'batchPublished'])->name('batches.published');
+Route::get('batch/list/byajax', [BatchController::class, 'batchListByAjax'])->name('batch.list.byajax');
