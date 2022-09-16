@@ -19,9 +19,9 @@
                         <h4 class="text-center font-weight-bold font-italic mt-3">Edit Class Name</h4>
                     </div>
                 </div>
-         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                <form action="{{ route('classes.update',$class->id) }}" method="post">
-                   @csrf
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <form action="{{ route('classes.update', $class->id) }}" method="post">
+                    @csrf
                     @method('PUT')
                     <div class="table-responsive p-1">
                         <table id="" class="table table-bordered dt-responsive nowrap text-center"
@@ -32,16 +32,14 @@
                                         <label for="school_name" class="col-form-label col-sm-3 text-right">
                                             Class Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text"
-                                                class="form-control"
-                                                name="class_name" value="{{ $class->class_name }}" id="class_name"
-                                                >
+                                            <input type="text" class="form-control" name="class_name"
+                                                value="{{ $class->class_name }}" id="class_name">
                                         </div>
                                     </div>
                                 </td>
                             </tr>
 
-                             <tr>
+                            <tr>
                                 <td><button type="submit" class="btn btn-block my-btn-submit">Update</button></td>
                             </tr>
                         </table>
@@ -52,4 +50,3 @@
     </section>
     <!--Content End-->
 @endsection
-

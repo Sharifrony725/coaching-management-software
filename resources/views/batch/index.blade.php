@@ -53,7 +53,7 @@
             $('#classId').change(function() {
                  var id = $(this).val();
                  if(id){
-                        $.get("{{route('batch.list.byajax')}}", {id:id} ,function(data){
+                        $.get("{{route('batch.list.byajax')}}", {'id': id} ,function(data){
                             $('#batch_list').html(data);
                         })
                     }

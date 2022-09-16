@@ -26,7 +26,6 @@
     <!--    jQuery-->
     <script src="{{ asset('admin/assets/js/jquery-3.3.1.slim.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/new.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--    Favicon-->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" type="image/x-icon">
 </head>
@@ -53,8 +52,9 @@
 <!--Header End-->
 
 <!--User Avatar Start-->
-<img class="avatar" src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar}} @else
-{{ asset('admin/assets/images/avatar.png') }}
+<img class="avatar"
+src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar ?? null}}
+@else{{ asset('admin/assets/images/avatar.png') ?? null }}
 @endif" alt="Avatar">
 <!--User Avatar Start-->
 

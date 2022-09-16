@@ -52,6 +52,8 @@ Route::get('class/unpublished/{id}', [ClassController::class, 'classUnpublished'
 Route::get('class/published/{id}', [ClassController::class, 'classPublished'])->name('class.published');
 //Batch Routes
 Route::resource('batches', BatchController::class);
-Route::get('batch/unpublished/{id}', [BatchController::class, 'batchUnpublished'])->name('batches.unpublished');
-Route::get('batch/published/{id}', [BatchController::class, 'batchPublished'])->name('batches.published');
+Route::get('batch/unpublished', [BatchController::class, 'batchUnpublished'])->name('batch.unpublished');
+Route::get('batch/published', [BatchController::class, 'batchPublished'])->name('batch.published');
 Route::get('batch/list/byajax', [BatchController::class, 'batchListByAjax'])->name('batch.list.byajax');
+// Route::get('batch/list/{id}', [BatchController::class, 'batchListByAjax'])->name('batch.edit');
+Route::get('batch/delete', [BatchController::class, 'batchDelete'])->name('batch.delete');

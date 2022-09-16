@@ -41,12 +41,14 @@ class BatchController extends Controller
     {
         $request->validate([
             'class_id' => 'required',
-            'batch_name' => 'required|string|max:2566',
+            'batch_name' => 'required|string|max:2566|unique:batches,batch_name',
+            'student_capacity' => 'required|integer',
             'status' => 'required'
         ]);
         $batch = new Batch();
         $batch->class_id = $request->class_id;
         $batch->batch_name = $request->batch_name;
+        $batch->student_capacity = $request->student_capacity;
         $batch->status = $request->status;
         $batch->save();
         return redirect()->route('batches.create')->with('message', 'Batch added successfully');
@@ -71,7 +73,9 @@ class BatchController extends Controller
      */
     public function edit($id)
     {
-        //
+        $batch = Batch::find($id);
+        $classes = ClassModel::all();
+        return view('batch.edit',compact('batch','classes'));
     }
 
     /**
@@ -83,8 +87,19 @@ class BatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $batch = Batch::find($id);
+        $request->validate([
+            'class_id' => 'required',
+            'batch_name' => 'required|string|max:2566|',
+            'student_capacity' => 'required|integer',
+        ]);
+        $batch->class_id = $request->class_id;
+        $batch->batch_name = $request->batch_name;
+        $batch->student_capacity = $request->student_capacity;
+        $batch->save();
+        return redirect()->route('batches.index')->with('message', 'Batch Info Update successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -98,9 +113,36 @@ class BatchController extends Controller
     }
     public function batchListByAjax(Request $request)
     {
-        //$id = $request->id;
-        $batch = Batch::where('class_id' == '2')->get();
-        return $batch;
-        return view('batch.batchListByAjax',compact('batche'));
+      $batches = Batch::where('class_id', $request->id)->get();
+      if(count($batches) > 0){
+          return view('batch.batchListByAjax',compact('batches'));
+      }else{
+          return view('batch.batchEmptyMessage');
+      }
     }
+    public function batchPublished(Request $request){
+        $batch = Batch::find($request->batch_id);
+        $batch->status = 1;
+        $batch->save();
+        $batches = Batch::where('class_id', $request->class_id)->get();
+        return view('batch.batchListByAjax', compact('batches'))->with('message','Batch published successfully.');
+    }
+    public function batchUnpublished(Request $request){
+        $batch = Batch::find($request->batch_id);
+        $batch->status = 2;
+        $batch->save();
+        $batches = Batch::where('class_id', $request->class_id)->get();
+        return view('batch.batchListByAjax', compact('batches'))->with('message','Batch unpublished successfully.');
+    }
+    public function batchDelete(Request $request){
+        $batch = Batch::find($request->batch_id);
+        $batch->delete();
+        $batches = Batch::where('class_id', $request->class_id)->get();
+        if(count($batches) > 0){
+            return view('batch.batchListByAjax', compact('batches'))->with('message','Batch unpublished successfully.');
+        }else{
+            return view('batch.batchEmptyMessage');
+        }
+    }
+
 }

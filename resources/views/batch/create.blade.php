@@ -55,6 +55,20 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                 <td>
+                                    <div class="form-group row mb-0">
+                                        <label for="studentCapacity" class="col-form-label col-sm-3 text-right">
+                                            Student Capacity</label>
+                                        <div class="col-sm-9">
+                                            <input type="text"
+                                                class="form-control"
+                                                name="student_capacity" value="{{ old('student_capacity') }}" id="studentCapacity"
+                                                placeholder="Write student capacity here">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                              <tr>
                                 <td>
                                     <div class="form-group row mb-0">
