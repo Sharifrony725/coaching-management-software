@@ -6,6 +6,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\StudentTypeController;
 use App\Http\Controllers\UserRegistrationController;
 Route::get('/',function(){
     return view('users.login_form');
@@ -57,3 +58,7 @@ Route::get('batch/published', [BatchController::class, 'batchPublished'])->name(
 Route::get('batch/list/byajax', [BatchController::class, 'batchListByAjax'])->name('batch.list.byajax');
 // Route::get('batch/list/{id}', [BatchController::class, 'batchListByAjax'])->name('batch.edit');
 Route::get('batch/delete', [BatchController::class, 'batchDelete'])->name('batch.delete');
+//Student Types Routes
+Route::get('student/type', [StudentTypeController::class, 'index'])->name('student.type');
+Route::get('student/type/list', [StudentTypeController::class, 'studentTypeList'])->name('student.type.list');
+Route::post('student/type/add', [StudentTypeController::class, 'store'])->name('student.type.store');

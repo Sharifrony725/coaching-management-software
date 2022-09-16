@@ -91,7 +91,9 @@ src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar ?? null}}
                     Setting
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
+                    <li>
+                        <a class="dropdown-item" href="{{ route('student.type') }}">Student Type</a>
+                    </li>
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">User</a>
                         <ul class="dropdown-menu">
@@ -102,6 +104,7 @@ src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar ?? null}}
                             <li><a href="{{ route('user.profile',['UserId' => Auth::user()->id]) }}" class="dropdown-item">User Profile</a></li>
                         </ul>
                     </li>
+
 
 
                     <li class="dropdown-submenu">
