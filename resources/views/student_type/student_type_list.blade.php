@@ -8,11 +8,11 @@
               <td>{{ $student_type->status == 1 ? 'Published' : 'Unpublished' }}</td>
               <td>
                   @if ($student_type->status == 1)
-                      <a href="#" class="btn btn-sm btn-warning float-left"><span class="fa fa-arrow-down"
-                              title="Unpublished"></span></a>
+                      <button onclick="Unpublished('{{ $student_type->id }}')" class="btn btn-sm btn-warning float-left"><span class="fa fa-arrow-down"
+                              title="Unpublished"></span></button>
                   @else
-                      <a href="#" class="btn btn-sm btn-success float-left"><span class="fa fa-arrow-up"
-                              title="Published"></span></a>
+                      <button onclick="Published('{{ $student_type->id }}')" class="btn btn-sm btn-success float-left"><span class="fa fa-arrow-up"
+                              title="Published"></span></button>
                   @endif
                   <a href="#" class="btn btn-sm btn-info float-left ml-2"><span class="fa fa-edit"
                           title="Edit"></span></a>
@@ -32,3 +32,4 @@
           <td colspan="5">Student Type Not Found...</td>
       </tr>
   @endif
+

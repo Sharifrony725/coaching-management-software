@@ -110,7 +110,21 @@
                   })
                 }
             })
-     })
+     });
+    // Unpublished
+     function Unpublished(id) {
+        $.get("{{ route('student.type.unpublished') }}",{type_id:id},function (data) {
+           // console.log(data)
+           $('#studentTypeTable').empty().html(data);
+        });
+    }
+    //published
+    function Published(id) {
+        $.get("{{ route('student.type.published') }}",{type_id:id},function (data) {
+           // console.log(data)
+           $('#studentTypeTable').empty().html(data);
+        });
+    }
     </script>
 <!-- Ajax End-->
 

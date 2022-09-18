@@ -62,3 +62,5 @@ Route::get('batch/delete', [BatchController::class, 'batchDelete'])->name('batch
 Route::get('student/type', [StudentTypeController::class, 'index'])->name('student.type');
 Route::get('student/type/list', [StudentTypeController::class, 'studentTypeList'])->name('student.type.list');
 Route::post('student/type/add', [StudentTypeController::class, 'store'])->name('student.type.store');
+Route::get('student/type/unpublished', [StudentTypeController::class, 'Unpublished'])->name('student.type.unpublished');
+Route::get('student/type/published', [StudentTypeController::class, 'Published'])->name('student.type.published');

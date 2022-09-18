@@ -16,19 +16,13 @@ class StudentTypeController extends Controller
      */
     public function index()
     {
-        $student_types = DB::table('student_types')
-        ->join('class_models','student_types.class_id', '=' , 'class_models.id')
-        ->select('student_types.*','class_models.class_name')
-        ->get();
+        $student_types = $this->getStudentType();
         $classes = ClassModel::all();
         return view('student_type.index',compact('student_types','classes'));
     }
     public function studentTypeList()
     {
-        $student_types = DB::table('student_types')
-        ->join('class_models','student_types.class_id', '=' , 'class_models.id')
-        ->select('student_types.*','class_models.class_name')
-        ->get();
+        $student_types = $this->getStudentType();
         $classes = ClassModel::all();
         return view('student_type.student_type_list',compact('student_types','classes'));
     }
@@ -103,5 +97,26 @@ class StudentTypeController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function Unpublished(Request $request){
+        $data = StudentType::find($request->type_id);
+        $data->status = 2;
+        $data->save();
+        $student_types = $this->getStudentType();
+        return view('student_type.student_type_list', compact('student_types'));
+    }
+    public function Published(Request $request){
+        $data = StudentType::find($request->type_id);
+        $data->status = 1;
+        $data->save();
+        $student_types = $this->getStudentType();
+        return view('student_type.student_type_list', compact('student_types'));
+    }
+    protected function getStudentType(){
+        $student_types = DB::table('student_types')
+            ->join('class_models', 'student_types.class_id', '=', 'class_models.id')
+            ->select('student_types.*', 'class_models.class_name')
+            ->get();
+        return $student_types;
     }
 }

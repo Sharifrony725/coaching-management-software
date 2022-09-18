@@ -47,10 +47,8 @@
             <p class="font-weight-bold mb-0">Mobile: +880-1581085164</p>
         </div>
     @endif
-
 </section>
 <!--Header End-->
-
 <!--User Avatar Start-->
 <img class="avatar"
 src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar ?? null}}
@@ -104,8 +102,6 @@ src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar ?? null}}
                             <li><a href="{{ route('user.profile',['UserId' => Auth::user()->id]) }}" class="dropdown-item">User Profile</a></li>
                         </ul>
                     </li>
-
-
 
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">School</a>
