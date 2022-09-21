@@ -10,7 +10,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-             <form action="#" method="post" id="studentTypeStore">
+             <form action="{{ route('student.type.update') }}" method="post" id="studentTypeUpdate">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group row">
@@ -26,7 +26,7 @@
 
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary d-none" id="reset">Reset</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
             </div>

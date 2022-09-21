@@ -87,6 +87,32 @@
         $('#studentTypeEditModal').find('#typeId').val(id);
         $('#studentTypeEditModal').modal('show');
     }
+    $('#studentTypeUpdate').submit(function (e) {
+        e.preventDefault();
+        let url = $(this).attr('action');
+            let data = $(this).serialize();
+            let method = $(this).attr('method');
+            $('#studentTypeEditModal #reset').click();
+            $('#studentTypeEditModal').modal('hide');
+            $.ajax({
+                data : data,
+                type : method,
+                url  : url,
+                success : function (data) {
+                    $('#studentTypeTable').empty().html(data);
+            }
+        })
+    })
+    //Student Type Delete
+    function  studentTypeDelete(id) {
+        let message = 'If you want to delete this item, press OK ';
+        if(confirm(message)){
+                $.get("{{ route('student.type.delete') }}",{type_id:id},function (data) {
+                    //console.log(data);
+                $('#studentTypeTable').empty().html(data);
+            });
+        }
+    }
     </script>
 <!-- Ajax End-->
 

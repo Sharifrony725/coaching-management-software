@@ -64,3 +64,5 @@ Route::get('student/type/list', [StudentTypeController::class, 'studentTypeList'
 Route::post('student/type/add', [StudentTypeController::class, 'store'])->name('student.type.store');
 Route::get('student/type/unpublished', [StudentTypeController::class, 'Unpublished'])->name('student.type.unpublished');
 Route::get('student/type/published', [StudentTypeController::class, 'Published'])->name('student.type.published');
+Route::post('student/type/update', [StudentTypeController::class, 'studentTypeUpdate'])->name('student.type.update');
+Route::get('student/type/delete', [StudentTypeController::class, 'studentTypeDelete'])->name('student.type.delete');

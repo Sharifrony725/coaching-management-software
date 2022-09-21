@@ -53,6 +53,15 @@ class StudentTypeController extends Controller
             $data->save();
         }
     }
+    public function studentTypeUpdate(Request $request)
+    {
+        $data = StudentType::find($request->type_id);
+        $data->student_type = $request->student_type;
+        $data->save();
+        $student_types = $this->getStudentType();
+        $classes = ClassModel::all();
+        return view('student_type.student_type_list', compact('student_types', 'classes'));
+    }
 
     /**
      * Display the specified resource.
@@ -98,6 +107,13 @@ class StudentTypeController extends Controller
     {
         //
     }
+    public function studentTypeDelete(Request $request){
+        $data = StudentType::find($request->type_id);
+        $data->status = 3;
+        $data->save();
+        $student_types = $this->getStudentType();
+        return view('student_type.student_type_list', compact('student_types'));
+    }
     public function Unpublished(Request $request){
         $data = StudentType::find($request->type_id);
         $data->status = 2;
@@ -116,6 +132,7 @@ class StudentTypeController extends Controller
         $student_types = DB::table('student_types')
             ->join('class_models', 'student_types.class_id', '=', 'class_models.id')
             ->select('student_types.*', 'class_models.class_name')
+            ->where('student_types.status', '!=' , 3)
             ->get();
         return $student_types;
     }

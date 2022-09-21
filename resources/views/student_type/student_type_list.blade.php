@@ -16,14 +16,10 @@
                   @endif
                   <button onclick="studentTypeEdit('{{ $student_type->id }}','{{  $student_type->student_type }}')" class="btn btn-sm btn-info float-left ml-2"><span class="fa fa-edit"
                           title="Edit"></span></button>
+                <button class="btn btn-sm btn-danger mr-1" onclick="studentTypeDelete('{{ $student_type->id }}')" >
+                    <span class="fa fa-trash" title="Delete"></span>
+                </button>
 
-                  <form action="#" method="post">
-                      @csrf
-                      @method('delete')
-                      <button class="btn btn-sm btn-danger mr-1"
-                          onclick="return confirm('If you want to delete this item,Press OK')"><span class="fa fa-trash"
-                              title="Delete"></span></button>
-                  </form>
               </td>
           </tr>
       @endforeach
