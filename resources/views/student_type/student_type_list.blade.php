@@ -14,8 +14,8 @@
                       <button onclick="Published('{{ $student_type->id }}')" class="btn btn-sm btn-success float-left"><span class="fa fa-arrow-up"
                               title="Published"></span></button>
                   @endif
-                  <a href="#" class="btn btn-sm btn-info float-left ml-2"><span class="fa fa-edit"
-                          title="Edit"></span></a>
+                  <button onclick="studentTypeEdit('{{ $student_type->id }}','{{  $student_type->student_type }}')" class="btn btn-sm btn-info float-left ml-2"><span class="fa fa-edit"
+                          title="Edit"></span></button>
 
                   <form action="#" method="post">
                       @csrf
