@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\ClassModel;
+use App\Models\StudentType;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -41,12 +42,14 @@ class BatchController extends Controller
     {
         $request->validate([
             'class_id' => 'required',
+            'student_type_id' => 'required|integer',
             'batch_name' => 'required|string|max:2566|unique:batches,batch_name',
             'student_capacity' => 'required|integer',
             'status' => 'required'
         ]);
         $batch = new Batch();
         $batch->class_id = $request->class_id;
+        $batch->student_type_id = $request->student_type_id;
         $batch->batch_name = $request->batch_name;
         $batch->student_capacity = $request->student_capacity;
         $batch->status = $request->status;
@@ -113,13 +116,17 @@ class BatchController extends Controller
     }
     public function batchListByAjax(Request $request)
     {
-      $batches = Batch::where('class_id', $request->id)->get();
+      $batches = Batch::where([
+        'class_id'=> $request->class_id,
+        'student_type_id' => $request->student_type_id
+      ])->where('status','!=' , 3)->get();
       if(count($batches) > 0){
           return view('batch.batchListByAjax',compact('batches'));
       }else{
           return view('batch.batchEmptyMessage');
       }
     }
+
     public function batchPublished(Request $request){
         $batch = Batch::find($request->batch_id);
         $batch->status = 1;
@@ -144,5 +151,11 @@ class BatchController extends Controller
             return view('batch.batchEmptyMessage');
         }
     }
-
+//classWiseStudentType
+    public function classWiseStudentType(Request $request){
+        $types = StudentType::where([
+            'class_id' => $request->class_id
+        ])->where('status', '!=' , 3)->get();
+        return view('batch.classWiseStudentType' , compact('types'));
+    }
 }

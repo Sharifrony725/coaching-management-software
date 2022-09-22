@@ -58,6 +58,7 @@ Route::get('batch/published', [BatchController::class, 'batchPublished'])->name(
 Route::get('batch/list/byajax', [BatchController::class, 'batchListByAjax'])->name('batch.list.byajax');
 // Route::get('batch/list/{id}', [BatchController::class, 'batchListByAjax'])->name('batch.edit');
 Route::get('batch/delete', [BatchController::class, 'batchDelete'])->name('batch.delete');
+Route::get('class/wise/student/type', [BatchController::class, 'classWiseStudentType'])->name('class.wise.student.type');
 //Student Types Routes
 Route::get('student/type', [StudentTypeController::class, 'index'])->name('student.type');
 Route::get('student/type/list', [StudentTypeController::class, 'studentTypeList'])->name('student.type.list');

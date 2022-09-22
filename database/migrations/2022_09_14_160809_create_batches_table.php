@@ -17,6 +17,7 @@ class CreateBatchesTable extends Migration
             $table->id();
             $table->integer('class_id');
             $table->string('batch_name');
+            $table->integer('student_capacity');
             $table->enum('status',['1','2']);
             $table->timestamps();
         });

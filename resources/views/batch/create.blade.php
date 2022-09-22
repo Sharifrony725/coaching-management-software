@@ -4,16 +4,7 @@
     <section class="container-fluid">
         <div class="row content">
             <div class="col-md-8 offset-md-2 pl-0 pr-0">
-
-                @if (Session::get('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Message : </strong> {{ Session::get('message') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-
+@include('admin.includes.alert')
                 <div class="form-group">
                     <div class="col-sm-12">
                         <h4 class="text-center font-weight-bold font-italic mt-3">Add Batch</h4>
@@ -36,6 +27,19 @@
                                                 @foreach ($classes as $class )
                                                     <option value="{{ $class->id }}">{{ $class->class_name }}</option>
                                                 @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group row mb-0">
+                                        <label for="typeId" class="col-form-label col-sm-3 text-right">
+                                            Student Type</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="student_type_id" id="typeId" required autofocus>
+                                                <option style="display: none">---Select Type---</option>
                                             </select>
                                         </div>
                                     </div>
@@ -100,5 +104,26 @@
         </div>
     </section>
     <!--Content End-->
+    <style>
+        #overlay .loader{
+            display: none;
+        }
+    </style>
+    @include('admin.includes.loader')
+    <script>
+        $('#classId').change(function () {
+           let classId = $(this).val();
+           if(classId){
+              $('#overlay .loader').show();
+            $.get("{{ route('class.wise.student.type') }}" , {class_id:classId},function (data) {
+                 $('#overlay .loader').hide();
+                console.log(data);
+                $('#typeId').empty().html(data);
+            })
+           }else{
+
+           }
+        })
+    </script>
 @endsection
 
