@@ -7,7 +7,7 @@
               @include('admin.includes.alert')
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">Class Wise Batch List</h4>
+                        <h4 class="text-center font-weight-bold font-italic mt-3">Class & Type Wise Batch List</h4>
                     </div>
                 </div>
 

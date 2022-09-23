@@ -78,7 +78,8 @@ class BatchController extends Controller
     {
         $batch = Batch::find($id);
         $classes = ClassModel::all();
-        return view('batch.edit',compact('batch','classes'));
+        $student_types = StudentType::all();
+        return view('batch.edit',compact('batch','classes', 'student_types'));
     }
 
     /**
@@ -93,10 +94,12 @@ class BatchController extends Controller
         $batch = Batch::find($id);
         $request->validate([
             'class_id' => 'required',
+            'student_type_id' => 'required',
             'batch_name' => 'required|string|max:2566|',
             'student_capacity' => 'required|integer',
         ]);
         $batch->class_id = $request->class_id;
+        $batch->student_type_id = $request->student_type_id;
         $batch->batch_name = $request->batch_name;
         $batch->student_capacity = $request->student_capacity;
         $batch->save();

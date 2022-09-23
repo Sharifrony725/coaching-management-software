@@ -4,16 +4,7 @@
     <section class="container-fluid">
         <div class="row content">
             <div class="col-md-8 offset-md-2 pl-0 pr-0">
-
-                @if (Session::get('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Message : </strong> {{ Session::get('message') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-
+               @include('admin.includes.alert')
                 <div class="form-group">
                     <div class="col-sm-12">
                         <h4 class="text-center font-weight-bold font-italic mt-3">Edit Batch</h4>
@@ -38,6 +29,25 @@
                                                     <option value="{{ $class->id }}"
                                                         {{ $class->id == $batch->class_id ? 'selected' : '' }}>
                                                         {{ $class->class_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group row mb-0">
+                                        <label for="classId" class="col-form-label col-sm-3 text-right">
+                                            Student type</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="student_type_id" id="classId" required autofocus>
+                                                <option style="display: none">---Select Type---</option>
+                                                @foreach ($student_types as $student_type)
+                                                    <option value="{{ $student_type->id }}"
+                                                        {{ $student_type->id == $batch->student_type_id ? 'selected' : '' }}>
+                                                        {{ $student_type->student_type }}
                                                     </option>
                                                 @endforeach
                                             </select>
