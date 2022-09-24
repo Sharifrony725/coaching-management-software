@@ -5,6 +5,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\StudentTypeController;
 use App\Http\Controllers\UserRegistrationController;
@@ -67,3 +68,5 @@ Route::get('student/type/unpublished', [StudentTypeController::class, 'Unpublish
 Route::get('student/type/published', [StudentTypeController::class, 'Published'])->name('student.type.published');
 Route::post('student/type/update', [StudentTypeController::class, 'studentTypeUpdate'])->name('student.type.update');
 Route::get('student/type/delete', [StudentTypeController::class, 'studentTypeDelete'])->name('student.type.delete');
+//Student Registration Routes
+Route::resource('students', StudentController::class);

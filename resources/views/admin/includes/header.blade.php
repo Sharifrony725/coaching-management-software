@@ -74,7 +74,7 @@ src="@if(Auth::user()->avatar){{ asset('/').Auth::user()->avatar ?? null}}
                     Student
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li class=""><a class="dropdown-item" href="#">Registration</a></li>
+                    <li class=""><a class="dropdown-item" href="{{ route('students.create') }}">Registration</a></li>
                     <li class=""><a class="dropdown-item" href="#">Batch Wise List</a></li>
                     <li class=""><a class="dropdown-item" href="#">Class Wise List</a></li>
                 </ul>
