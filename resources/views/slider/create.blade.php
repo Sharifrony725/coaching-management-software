@@ -52,7 +52,6 @@
                                                 class="form-control @error('slide_title') is-invalid @enderror"
                                                 name="slide_title" value="{{ old('slide_title') }}" id="slideTitle"
                                                 placeholder="Write slide title here" required>
-
                                         </div>
                                     </div>
                                 </td>
@@ -106,4 +105,7 @@
         </div>
     </section>
     <!--Content End-->
+    <script>
+
+    </script>
 @endsection

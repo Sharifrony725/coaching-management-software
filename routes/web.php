@@ -70,3 +70,4 @@ Route::post('student/type/update', [StudentTypeController::class, 'studentTypeUp
 Route::get('student/type/delete', [StudentTypeController::class, 'studentTypeDelete'])->name('student.type.delete');
 //Student Registration Routes
 Route::resource('students', StudentController::class);
+Route::get('bring/student/type', [StudentController::class, 'bringStudentType'])->name('bring.student.type');

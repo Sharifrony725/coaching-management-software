@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\School;
+use App\Models\ClassModel;
+use App\Models\StudentType;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -23,7 +26,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-       return view('student.create');
+       $schools = School::where('status' , '=', 1)->get();
+       $classes = ClassModel::where('status' , '=', 1)->get();
+       return view('student.create',compact('schools', 'classes'));
     }
 
     /**
@@ -80,5 +85,9 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function bringStudentType(Request $request){
+        $types = StudentType::where('class_id', $request->class_id)->get();
+        return view('student.student_types',compact('types'));
     }
 }
