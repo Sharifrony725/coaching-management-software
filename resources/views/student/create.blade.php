@@ -121,21 +121,26 @@
                         <input type="text" name="student_roll" class="form-control col-sm-8" id="studentRoll" placeholder="Roll Number" value="" required/>
                         <span class="text-danger"></span>
                     </div> --}}
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="classId" class="col-sm-4 col-form-label text-right">Class Name</label>
-                        <select name="class_id" class="form-control col-sm-8" id="classId" required>
-                            <option value="" style="display: none">Select Class</option>
-                            @foreach ($classes as $class)
-                                <option value="{{ $class->id }}">{{ $class->class_name }}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger"></span>
-                    </div>
 
-                    <div class="form-group col-md-6 mb-3">
-                        <label class="col-sm-4 col-form-label text-right">Student Type</label>
-                        <div class="col-sm-8" id="type"> <span class="text-info">Please Select A Class First</span></div>
-                    </div>
+                   <div class="col-12">
+                        <div class="row" id="batchInfo">
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="classId" class="col-sm-4 col-form-label text-right">Class Name</label>
+                                <select name="class_id" class="form-control col-sm-8" id="classId" required>
+                                    <option value="" style="display: none">Select Class</option>
+                                    @foreach ($classes as $class)
+                                        <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <label class="col-sm-4 col-form-label text-right">Student Type</label>
+                                <div class="col-sm-8" id="type"> <span class="text-info">Please Select A Class First</span></div>
+                            </div>
+                        </div>
+                   </div>
+
 
                     <div class="form-group col-md-6 mb-3">
                         <label class="col-sm-4 col-form-label text-right">Publication Status</label>
@@ -171,7 +176,7 @@
            if(classId){
             $.get("{{ route('bring.student.type') }}",{class_id:classId},function (data) {
                 console.log(data);
-                $('#type').empty().html(data);
+                $('#batchInfo').empty().html(data);
             })
            }
         })

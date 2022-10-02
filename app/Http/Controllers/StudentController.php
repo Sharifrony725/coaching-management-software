@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\School;
 use App\Models\ClassModel;
 use App\Models\StudentType;
@@ -88,6 +89,19 @@ class StudentController extends Controller
     }
     public function bringStudentType(Request $request){
         $types = StudentType::where('class_id', $request->class_id)->get();
-        return view('student.student_types',compact('types'));
+        $classes = ClassModel::where('status', '=' , 1)->get();
+        return view('student.student_types',[
+                'types' => $types,
+                'classes' => $classes,
+                'data' => $request
+            ]);
     }
+    public function batchRollForm(Request $request){
+        $batches = Batch::where([
+            'class_id' => $request->class_id,
+            'student_type_id'=> $request->type_id
+           ])->get();
+        return view('student.batchRollForm',compact('batches'));
+    }
+//last
 }

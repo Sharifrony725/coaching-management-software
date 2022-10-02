@@ -71,3 +71,4 @@ Route::get('student/type/delete', [StudentTypeController::class, 'studentTypeDel
 //Student Registration Routes
 Route::resource('students', StudentController::class);
 Route::get('bring/student/type', [StudentController::class, 'bringStudentType'])->name('bring.student.type');
+Route::get('batch/roll/form', [StudentController::class, 'batchRollForm'])->name('batch.roll.form');
