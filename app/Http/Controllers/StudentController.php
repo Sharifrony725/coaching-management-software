@@ -97,11 +97,12 @@ class StudentController extends Controller
             ]);
     }
     public function batchRollForm(Request $request){
+        $type = StudentType::find($request->type_id);
         $batches = Batch::where([
             'class_id' => $request->class_id,
-            'student_type_id'=> $request->type_id
+            'student_type_id'=> $request->type_id,
            ])->get();
-        return view('student.batchRollForm',compact('batches'));
+        return view('student.batchRollForm',compact('batches','type'));
     }
 //last
 }

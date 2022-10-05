@@ -14,7 +14,7 @@
         @if (count($types) > 0)
             @foreach ($types as $type)
                 <input type="checkbox" onclick="batchRollForm('{{ $type->id }}')" class="mr-2"
-                    name="student_type[{{ $type->id }}]" id=""
+                    name="student_type[{{ $type->id }}]" id="studentType-{{ $type->id }}"
                     value="{{ $type->id }}">{{ $type->student_type }}
             @endforeach
         @else
@@ -23,21 +23,40 @@
     </div>
 </div>
 @foreach ($types as $type)
-    <div class="col-12" id="batchRollInfo"></div>
+    <div class="col-12" id="batchRollInfo-{{ $type->id }}"></div>
 @endforeach
 <script>
-    function batchRollForm(typeId) {
-        let classId = $('#classId').val();
-        if (classId && typeId) {
-            $.get("{{ route('batch.roll.form') }}", {
-                class_id: classId,
-                type_id: typeId,
-            }, function(data) {
-                $('#batchRollInfo').empty().html(data);
-                console.log(data);
-            });
+@foreach ($types as $type)
+    $('#studentType-{{ $type->id }}').change(function () {
+          let typeId = $(this).val();
+        if($(this).prop('checked')){
+            let classId = $('#classId').val();
+                if (classId && typeId) {
+                $.get("{{ route('batch.roll.form') }}", {
+                    class_id: classId,
+                    type_id: typeId,
+                }, function(data) {
+                    $('#batchRollInfo-'+ typeId).empty().html(data);
+                    console.log(data);
+                });
+            }
+        }else{
+        $('#batchRollInfo-'+ typeId).empty();
         }
-    }
+    })
+@endforeach
+    // function batchRollForm(typeId) {
+    //     let classId = $('#classId').val();
+    //     if (classId && typeId) {
+    //         $.get("{{ route('batch.roll.form') }}", {
+    //             class_id: classId,
+    //             type_id: typeId,
+    //         }, function(data) {
+    //             $('#batchRollInfo-'+ typeId).empty().html(data);
+    //             console.log(data);
+    //         });
+    //     }
+    // }
      $('#classId').change(function () {
            let classId = $(this).val();
            if(classId){
