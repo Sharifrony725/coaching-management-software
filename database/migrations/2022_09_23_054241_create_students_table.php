@@ -31,6 +31,8 @@ class CreateStudentsTable extends Migration
             $table->text('address')->nullable();
             $table->enum('status',['1','2','3']);
             $table->integer('user_id');
+            $table->string('password')->nullable();
+            $table->string('encrypt_password')->nullable();
             $table->timestamps();
         });
     }

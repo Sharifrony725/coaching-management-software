@@ -11,8 +11,8 @@
                     </div>
                 </div>
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                <form action="" method="post" enctype="multipart/form-data" class="form-inline">
-                    @csrf
+                <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data" class="form-inline">
+                @csrf
                     <div class="form-group col-md-6 mb-3">
                         <label for="studentName" class="col-sm-4 col-form-label text-right">Student Name</label>
                         <input type="text" name="student_name" class="form-control col-sm-8" placeholder="Student Name"
@@ -56,7 +56,7 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="fatherMobile" class="col-sm-4 col-form-label text-right">Father's Mobile No.</label>
                         <input type="text" name="father_mobile" class="form-control col-sm-8" id="fatherMobile"
-                            placeholder="8801XXXXXXXXX" value="" minlength="13" maxlength="13" required>
+                            placeholder="8801XXXXXXXXX" value="" minlength="11" maxlength="13" required>
                         <span class="text-danger"></span>
                     </div>
 
@@ -77,7 +77,7 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="motherMobile" class="col-sm-4 col-form-label text-right">Mother's Mobile No.</label>
                         <input type="text" name="mother_mobile" class="form-control col-sm-8" id="motherMobile"
-                            placeholder="8801XXXXXXXXX" value="" minlength="13" maxlength="13" required>
+                            placeholder="8801XXXXXXXXX" value="" minlength="11" maxlength="13" required>
                         <span class="text-danger"></span>
                     </div>
 
@@ -98,7 +98,7 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="smsMobile" class="col-sm-4 col-form-label text-right">SMS Mobile No.</label>
                         <input type="text" name="sms_mobile" class="form-control col-sm-8" id="smsMobile"
-                            placeholder="8801XXXXXXXXX" value="" minlength="13" maxlength="13" required>
+                            placeholder="8801XXXXXXXXX" value="" minlength="11" maxlength="13" required>
                         <span class="text-danger"></span>
                     </div>
 
