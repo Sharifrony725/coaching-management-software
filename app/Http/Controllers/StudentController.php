@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\School;
+use App\Models\Student;
 use App\Models\ClassModel;
 use App\Models\StudentType;
+use App\Models\student_type_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -40,7 +44,42 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        return 'ok';
+       $student = new Student();
+       $student->student_name = $request->student_name;
+       $student->school_id = $request->school_id;
+       $student->class_id = $request->class_id;
+       $student->father_name = $request->father_name;
+       $student->father_mobile = $request->father_mobile;
+       $student->father_profession = $request->father_profession;
+       $student->mother_name = $request->mother_name;
+       $student->mother_mobile = $request->mother_mobile;
+       $student->mother_profession = $request->mother_profession;
+       $student->email_address = $request->email_address;
+       $student->sms_mobile = $request->sms_mobile;
+       $student->date_of_admission = $request->date_of_admission;
+       $student->student_photo = $request->student_photo; //to be edit
+       $student->address = $request->address;
+       $student->status = 1;
+       $student->user_id = Auth::user()->id;
+       $student->password = $request->sms_mobile;
+       $student->encrypt_password = Hash::make($request->sms_mobile);
+       $student->save();
+
+       $studentId = $student->id;
+       $batches = $request->batch_id;
+       $rolls = $request->roll;
+       $studentTypes = $request->student_type;
+       foreach ($studentTypes as $key => $studentType) {
+        $data = new student_type_details();
+        $data->student_id = $studentId;
+        $data->class_id = $request->class_id;
+        $data->type_id = $key;
+        $data->batch_id = $batches[$key];
+        $data->roll = $rolls[$key];
+        $data->status = 1;
+        $data->save();
+       }
+       return back()->with('message','registration successfully');
     }
 
     /**
