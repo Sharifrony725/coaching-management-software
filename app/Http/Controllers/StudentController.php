@@ -7,8 +7,9 @@ use App\Models\School;
 use App\Models\Student;
 use App\Models\ClassModel;
 use App\Models\StudentType;
-use App\Models\student_type_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\student_type_details;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +22,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = DB::table('students')
+        ->join('schools', 'students.school_id', '=', 'schools.id' )
+        ->join('class_models', 'students.class_id', '=' , 'class_models.id')
+        ->select('students.*', 'schools.school_name', 'class_models.class_name');
+        return view('student.index',compact('students'));
     }
 
     /**
