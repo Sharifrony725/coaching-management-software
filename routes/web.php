@@ -72,3 +72,6 @@ Route::get('student/type/delete', [StudentTypeController::class, 'studentTypeDel
 Route::resource('students', StudentController::class);
 Route::get('bring/student/type', [StudentController::class, 'bringStudentType'])->name('bring.student.type');
 Route::get('batch/roll/form', [StudentController::class, 'batchRollForm'])->name('batch.roll.form');
+Route::get('class/wise/list', [StudentController::class, 'classWiseList'])->name('class.wise.list');
+Route::get('class/wise/student/type/list', [StudentController::class, 'classWiseStudentTypeList'])->name('class.wise.student.type.list');
+Route::get('class/and/type/wise/student/list', [StudentController::class, 'classAndTypeWiseStudentList'])->name('class.and.type.wise.student.list');

@@ -19,7 +19,7 @@
                     <li class=""><a class="dropdown-item" href="{{ route('students.create') }}">Registration</a></li>
                     <li class=""><a class="dropdown-item" href="{{ route('students.index') }}">All Current Student List</a></li>
                     <li class=""><a class="dropdown-item" href="#">Batch Wise List</a></li>
-                    <li class=""><a class="dropdown-item" href="#">Class Wise List</a></li>
+                    <li class=""><a class="dropdown-item" href="{{ route('class.wise.list') }}">Class Wise List</a></li>
                 </ul>
             </li>
 

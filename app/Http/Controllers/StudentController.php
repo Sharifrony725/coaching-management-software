@@ -25,7 +25,11 @@ class StudentController extends Controller
         $students = DB::table('students')
         ->join('schools', 'students.school_id', '=', 'schools.id' )
         ->join('class_models', 'students.class_id', '=' , 'class_models.id')
-        ->select('students.*', 'schools.school_name', 'class_models.class_name');
+        ->select('students.*', 'schools.school_name', 'class_models.class_name')
+        ->where(['students.status' => 1,])
+        ->orderBy('students.class_id' , 'ASC')
+        ->get();
+        //return $students;
         return view('student.index',compact('students'));
     }
 
@@ -84,7 +88,7 @@ class StudentController extends Controller
         $data->status = 1;
         $data->save();
        }
-       return back()->with('message','registration successfully');
+        return redirect()->route('students.index')->with('message', 'registration successfully.');
     }
 
     /**
@@ -131,6 +135,7 @@ class StudentController extends Controller
     {
         //
     }
+    //bringStudentType
     public function bringStudentType(Request $request){
         $types = StudentType::where('class_id', $request->class_id)->get();
         $classes = ClassModel::where('status', '=' , 1)->get();
@@ -140,6 +145,7 @@ class StudentController extends Controller
                 'data' => $request
             ]);
     }
+    //batchRollForm
     public function batchRollForm(Request $request){
         $type = StudentType::find($request->type_id);
         $batches = Batch::where([
@@ -148,5 +154,23 @@ class StudentController extends Controller
            ])->get();
         return view('student.batchRollForm',compact('batches','type'));
     }
-//last
+    //classWiseList
+    public function classWiseList(){
+        $classes = ClassModel::where('status', '=', 1)->get();
+        return view('student.class.classWiseList', compact('classes'));
+    }
+    //classWiseStudentTypeList
+    public function classWiseStudentTypeList(Request $request){
+        $classId = $request->class_id;
+        $types = StudentType::where([
+            'class_id' => $classId,
+            'status' => 1
+        ])->get();
+        return view('student.class.student_type',compact('types'));
+    }
+    //classAndTypeWiseStudentList
+    public function classAndTypeWiseStudentList()[
+        
+    ]
+    //last
 }
