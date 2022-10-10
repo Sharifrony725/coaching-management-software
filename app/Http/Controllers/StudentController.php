@@ -169,8 +169,22 @@ class StudentController extends Controller
         return view('student.class.student_type',compact('types'));
     }
     //classAndTypeWiseStudentList
-    public function classAndTypeWiseStudentList()[
-        
-    ]
+    public function classAndTypeWiseStudentList(Request $request){
+        $students = DB::table('students')
+            ->join('schools', 'students.school_id', '=', 'schools.id')
+            ->join('student_type_details', 'student_type_details.student_id', '=', 'students.id')
+            ->join('batches', 'student_type_details.batch_id', '=', 'batches.id')
+            ->select('students.*', 'schools.school_name', 'student_type_details.roll' , 'batches.batch_name')
+            ->where([
+                'students.status' => 1,
+                'students.class_id' => $request->class_id,
+                'student_type_details.type_id' => $request->student_type_id,
+                'student_type_details.status' => 1,
+                ])
+            ->orderBy('student_type_details.roll', 'ASC')
+            ->get();
+         //  return $students;
+        return view('student.class.student_list', compact('students'));
+    }
     //last
 }

@@ -40,6 +40,11 @@
                             </div>
                         </td>
                     </div>
+                    <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-cnter" id="studentList">
+
+                    </table>
+                </div>
              </div>
             </div>
         </div>
@@ -70,6 +75,7 @@
                 $('#overlay .loader').show();
                 $.get("{{ route('class.and.type.wise.student.list') }}",{ class_id:classId,type_id:typeId },function(data){
                      console.log(data);
+                      $('#studentList').empty().html(data)
                     $('#overlay .loader').hide();
                 })
             }
