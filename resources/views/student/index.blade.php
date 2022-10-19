@@ -45,16 +45,17 @@
                         <td>{{ $student->sms_mobile }}</td>
                         <td>{{ $student->id }}</td>
                         <td>
-                            @if($student->status ==  1)
+                            {{-- @if($student->status ==  1)
                                 <a href="#" class="btn btn-sm btn-warning float-left"><span class="fa fa-arrow-down" title="Unpublished"></span></a>
                            @else
                              <a href="#" class="btn btn-sm btn-success float-left"><span class="fa fa-arrow-up" title="Published"></span></a>
-                           @endif
-                            <a href="#" class="btn btn-sm btn-info float-left ml-2"><span class="fa fa-edit"></span></a>
+                           @endif --}}
+                           <a href="{{ route('students.show',$student->id) }}" class="btn btn-sm btn-dark float-left ml-2" title="Details"><span class="fa fa-eye"></span></a>
+                            <a href="#" class="btn btn-sm btn-info float-left ml-2" title="Edit"><span class="fa fa-edit"></span></a>
                             <form action="" method="post">
                                 @csrf
                                 @method('delete')
-                            <button  class="btn btn-sm btn-danger" onclick="return confirm('If you want to delete this item,Press OK')"><span class="fa fa-trash"></span></button>
+                            <button  class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('If you want to delete this item,Press OK')"><span class="fa fa-trash"></span></button>
                             </form>
                         </td>
                     </tr>
