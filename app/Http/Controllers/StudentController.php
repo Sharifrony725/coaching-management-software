@@ -99,7 +99,21 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student = Student::find($id);
+        //$student = Student::find($id);
+        $student = DB::table('students')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->join('class_models', 'students.class_id','=','class_models.id')
+        ->join('student_type_details', 'student_type_details.student_id', '=', 'students.id')
+        ->join('student_types', 'student_type_details.type_id', '=', 'student_types.id')
+        ->join('batches', 'student_type_details.batch_id', '=', 'batches.id')
+        ->select('students.*', 'schools.school_name', 'student_type_details.roll', 'batches.batch_name', 'class_models.class_name', 'student_types.student_type')
+        ->where([
+            'students.status' => 1,
+            'students.id' => $id
+        ])
+        ->orderBy('student_type_details.type_id', 'ASC')
+        ->first();
+        //return $student;
         return view('student.show',compact('student'));
     }
 
