@@ -184,7 +184,7 @@ class StudentController extends Controller
         return view('student.class.student_type',compact('types'));
     }
     //classAndTypeWiseStudentList
-    public function classAndTypeWiseStudentList(Request $request){
+    public function classAndTypeWiseStudentList(Request $request){ 
         $students = DB::table('students')
             ->join('schools', 'students.school_id', '=', 'schools.id')
             ->join('student_type_details', 'student_type_details.student_id', '=', 'students.id')
